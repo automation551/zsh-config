@@ -14,7 +14,14 @@ if [ -r ~/.zshrc ]; then
     echo "Found ~/.zshrc. Backing up to ~/.zshrc.bak"
     mv ~/.zshrc ~/.zshrc.bak
 fi
-tmpdir=$(mktemp -d -t tmp)
+mktemp -V >& /dev/null
+if [ $? = 0 ]; then
+    # GNU
+    tmpdir=$(mktemp -d)
+else
+    # BSD
+    tmpdir=$(mktemp -d -t tmp)
+fi
 /usr/bin/env git clone git://github.com/jacintos/zsh-config.git $tmpdir
 mv $tmpdir/dot.zshrc ~/.zshrc
 rm -rf $tmpdir
