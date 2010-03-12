@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 # Derived from the oh-my-zsh install.sh script
 
 set -e
@@ -22,7 +22,7 @@ else
     # BSD
     tmpdir=$(mktemp -d -t tmp)
 fi
-/usr/bin/env git clone git://github.com/jacintos/zsh-config.git $tmpdir
-mv $tmpdir/dot.zshrc ~/.zshrc
+/usr/bin/env git clone git://github.com/jacintos/zsh-config.git \
+    $tmpdir/zsh-config
+mv $tmpdir/zsh-config/dot.zshrc ~/.zshrc
 rm -rf $tmpdir
-source ~/.zshrc
